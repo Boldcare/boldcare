@@ -18,7 +18,7 @@ export default {
   // Saves a patient to the database
   savePatient: function(patientInfo) {
     console.log("patient info", patientInfo)
-    return axios.post("/", patientInfo);
+    return axios.post("/api/patient/patients", patientInfo);
    
 
   }

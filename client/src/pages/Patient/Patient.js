@@ -126,7 +126,7 @@ class Patient extends Component {
               <List>
                 {this.state.patientInfo.map(patientInfo => (
                   <ListItem key={patientInfo._id}>
-                    <Link to={"/" + patientInfo._id}>
+                    <Link to={"/patients/" + patientInfo._id}>
                       <strong>
                         {patientInfo.firstName} {patientInfo.lastName}
                       </strong>
