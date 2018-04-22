@@ -4,6 +4,7 @@ import Patient from "./pages/Patient";
 import Appointment from "./pages/Appointment";
 import Main from "./pages/main";
 import Detail from "./pages/Detail";
+import Login from "./pages/login";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
@@ -13,6 +14,7 @@ const App = () =>
       <Nav />
       <Switch>
         <Route exact path="/" component={Main} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/patients" component={Patient} />
         <Route exact path="/appointment" component={Appointment} />
         <Route exact path="/patients/patients" component={Patient} />

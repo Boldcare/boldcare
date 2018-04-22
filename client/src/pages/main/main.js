@@ -1,6 +1,7 @@
 // import React from "react";
  import { Col, Row, Container } from "../../components/Grid";
  import { Link } from "react-router-dom";
+ import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 // import Jumbotron from "../../components/Jumbotron";
 
 // const Main= () =>
@@ -57,7 +58,7 @@ class Main extends Component {
               <br> 
                   </br> 
             <button>
-            <Link to="/appointment"><h4>Patient</h4></Link> 
+            <Link to="/login"><h4>Patient</h4></Link> 
               
             </button> 
             <button>
