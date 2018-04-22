@@ -29,18 +29,60 @@ class Detail extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="md-6 sm-12">
-            <article>
-              
-              <ol>
-              <li> Phone Number: {this.state.patient.phoneNumber}</li>
-              <li> Email: {this.state.patient.email}</li>
-              <li> Social: {this.state.patient.SSN}</li>
-              <li> Date of Birth: {this.state.patient.birthDate}</li>
-              <li> VisitDate: {this.state.patient.date}</li>
-              <li> Reason for Visit: {this.state.patient.visitReason}</li>
-              </ol>
-            </article>
+          <Col size="md-10 sm-12">
+         <table>
+         <tr>
+          <th>Phone Number</th> 
+          <br> 
+                  </br> 
+          <th>Email</th> 
+          <br> 
+                  </br> 
+          <th>Social Number</th> 
+          <br> 
+                  </br> 
+          <th>Birth Date</th> 
+          <br> 
+                  </br> 
+                  <br> 
+                  </br> 
+          <th>Visit Date</th> 
+          <br> 
+                  </br> 
+          <th>Reason for Visit</th> 
+          
+          </tr>
+          <br> 
+                  </br> 
+          <tr>
+          <br> 
+                  </br> 
+          <td>  {this.state.patient.phoneNumber}</td>
+          <br> 
+                  </br> 
+              <td> {this.state.patient.email}</td>
+              <br> 
+                  </br> 
+                  <br> 
+                  </br> 
+                  <br> 
+                  </br> 
+              <td>  {this.state.patient.SSN}</td>
+              <br> 
+                  </br> 
+              <td>  {this.state.patient.birthDate}</td>
+              <br> 
+                  </br> 
+                  <br> 
+                  </br> 
+              <td>  {this.state.patient.date}</td>
+              <br> 
+                  </br> 
+              <td>  {this.state.patient.visitReason}</td>
+
+          </tr>
+         </table> 
+           
           </Col>
         </Row>
         <Row>
