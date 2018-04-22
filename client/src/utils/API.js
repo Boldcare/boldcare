@@ -1,25 +1,21 @@
- import axios from "axios";
+import axios from "axios";
 
 export default {
   // Gets all patients
-  getPatients: function() {
-    console.log('getting  patients ')
-    return axios.get("/");
-    
+  getPatient: function() {
+    return axios.get("/api/patients");
   },
   // Gets the patient with the given id
-  getPatient: function(id) {
-    return axios.get("api/patients/" + id);
+  getPatients: function(id) {
+    return axios.get("/api/patients/patients/" + id);
   },
   // Deletes the patient with the given id
-  deletePatient: function(id) {
+  deletePatients: function(id) {
     return axios.delete("/api/patients/" + id);
   },
   // Saves a patient to the database
-  savePatient: function(patientInfo) {
-    console.log("patient info", patientInfo)
-    return axios.post("/api/patient/patients", patientInfo);
-   
-
+  savePatients: function(patientData) {
+    console.log(patientData)
+    return axios.post("/api/patients/patients", patientData);
   }
 };

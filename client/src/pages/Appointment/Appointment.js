@@ -63,7 +63,7 @@ class Appointment extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-            <h1><strong>Add an Appointment</strong></h1> 
+            <h2><strong>Schedule an Appointment below</strong></h2> 
             </Jumbotron>
           </Col>
         </Row>
@@ -89,15 +89,15 @@ class Appointment extends Component {
               />
               
 
-              <TextArea
-              value = {this.state.visitReason}
-              onChange = {this.handleInputChange}
-              name="VisitReason"
-              placeholder = "visit Reason (optional)"
+             <TextArea
+                value={this.state.visitReason}
+                onChange={this.handleInputChange}
+                name="visitReason"
+                placeholder="Reason for Visit"
               />
 
               <FormBtn
-                disabled={!(this.state.date && this.state.time && this.state.phonenumber )}
+                disabled={!(this.state.phonenumber )}
                 onClick={this.handleFormSubmit}
               >
                 Submit New Appointment

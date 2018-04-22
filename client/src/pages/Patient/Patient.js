@@ -7,34 +7,36 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-class Patient extends Component {
+class Patients extends Component {
   state = {
-    patientInfo: [],
-    firstName: "", 
-    lastName: "", 
-    userName: "", 
-    password: "", 
+    patients: [], 
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+    SSN: "",
+    phoneNumber: "", 
+    username: "", 
     email: "", 
-    visitReason: ""
-    
+    password: "",
+    visitReason: "", 
+
   };
 
   componentDidMount() {
-    this.loadPatientInfo();
-    console.log('reloading')
+    this.loadPatients();
   }
 
-  loadPatientInfo = () => {
-    API.getPatients()
+  loadPatients = () => {
+    API.getPatient()
       .then(res =>
-        this.setState({ patientInfo: res.data, firstName: "", lastName: "", userName: "", password: "", email: "", visitReason: "" })
+        this.setState({ patients: res.data, firstName: "", lastName: "", birthDate: "", SSN: "", phoneNumber: "",  username: "", email: "",  password: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deletePatient = id => {
+  deletePatients= id => {
     API.deletePatient(id)
-      .then(res => this.loadPatientInfo())
+      .then(res => this.loadPatients())
       .catch(err => console.log(err));
   };
 
@@ -44,23 +46,24 @@ class Patient extends Component {
       [name]: value
     });
   };
-   //nsole.log("API", API);
+
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.firstName && this.state.lastName && this.state.userName && this.state.password && this.state.email) {
-      console.log("form Submit begin")
-      API.savePatient({
+    if (this.state.username && this.state.password) {
+      API.savePatients({
         firstName: this.state.firstName,
         lastName: this.state.lastName,
-        userName: this.state.userName,
+        birthDate: this.state.birthDate,
+        SSN: this.state.SSN,
+        phoneNumber: this.state.phoneNumber,
+        username: this.state.username,
+        email: this.state.email,
         password: this.state.password,
-        email: this.state.email, 
         visitReason: this.state.visitReason
       })
-        .then(res => this.loadPatientInfo())
-        .catch(err => console.log("this is where the error is",err));
+        .then(res => this.loadPatients())
+        .catch(err => console.log(err));
     }
-    console.log('form submit complete')
   };
 
   render() {
@@ -69,69 +72,85 @@ class Patient extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1><strong>Add a Patient Below</strong></h1>
+              <h2>Add a patient Below</h2>
             </Jumbotron>
             <form>
               <Input
                 value={this.state.firstName}
                 onChange={this.handleInputChange}
                 name="firstName"
-                placeholder="firstName (required)"
+                placeholder="First Name (required)"
               />
               <Input
                 value={this.state.lastName}
                 onChange={this.handleInputChange}
                 name="lastName"
-                placeholder="lastName (required)"
+                placeholder="Last Name (required)"
               />
               <Input
-                value={this.state.userName}
+                value={this.state.birthDate}
                 onChange={this.handleInputChange}
-                name="userName"
-                placeholder="userName (required)"
+                name="birthDate"
+                placeholder="Date of Birth (required)"
               />
               <Input
-                value={this.state.password}
+                value={this.state.SSN}
                 onChange={this.handleInputChange}
-                name="password"
-                placeholder="password (required)"
+                name="SSN"
+                placeholder="Social Security Number (required)"
+              />
+              <Input
+                value={this.state.phoneNumber}
+                onChange={this.handleInputChange}
+                name="phoneNumber"
+                placeholder="Phone Number(required)"
+              />
+              <Input
+                value={this.state.username}
+                onChange={this.handleInputChange}
+                name="username"
+                placeholder="username (required)"
               />
               <Input
                 value={this.state.email}
                 onChange={this.handleInputChange}
                 name="email"
-                placeholder="email (required)"
+                placeholder="email(required)"
               />
-
+              <Input
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                name="password"
+                placeholder="Password(required)"
+              />
               <TextArea
-              value = {this.state.visitReason}
-              onChange = {this.handleInputChange}
-              name="VisitReason"
-              placeholder = "visit Reason (optional)"
+                value={this.state.visitReason}
+                onChange={this.handleInputChange}
+                name="visitReason"
+                placeholder="Reason for Visit"
               />
-
               <FormBtn
-                disabled={!(this.state.firstName && this.state.lastName && this.state.userName && this.state.password && this.state.email )}
+                disabled={!(this.state.username && this.state.password)}
                 onClick={this.handleFormSubmit}
               >
-                Submit New Patient
+                Submit Patient
               </FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Previous Patients</h1>
+              <h2>Added Patients</h2>
             </Jumbotron>
-            {!this.state.patientInfo.length ? (
+            {this.state.patients.length ? (
               <List>
-                {this.state.patientInfo.map(patientInfo => (
-                  <ListItem key={patientInfo._id}>
-                    <Link to={"/patients/" + patientInfo._id}>
+                {this.state.patients.map(patients => (
+                  <ListItem key={patients._id}>
+                    <Link to={"/patients/" + patients._id}>
                       <strong>
-                        {patientInfo.firstName} {patientInfo.lastName}
+                        {patients.firstName}, {patients.lastName}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deletePatient(patientInfo._id)} />
+                    <DeleteBtn onClick={() => this.deletePatients(patients._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -145,4 +164,4 @@ class Patient extends Component {
   }
 }
 
-export default Patient;
+export default Patients;

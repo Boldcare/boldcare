@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const appointmentRoutes = require("./appointment");
+const patientsRoutes = require("./patients");
 
-// appointment routes
-router.use("/patient", appointmentRoutes);
+// ppatient routes
+router.use("/patients", patientsRoutes);
 
 module.exports = router;
